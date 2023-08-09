@@ -1,8 +1,12 @@
 const Product = require("../models/Product");
+const {
+  getProductsService,
+  getProductCreateService,
+} = require("../services/product.services");
 
 exports.getProducts = async (req, res, next) => {
   try {
-    const allProduct = await Product.find({});
+    const allProduct = await getProductsService();
     res.status(200).json({
       status: "Success",
       data: allProduct,
@@ -23,7 +27,7 @@ exports.createProducts = async (req, res, next) => {
     // const result = await product.save();
 
     // part 2
-    const result = await Product.create(req.body);
+    const result = await getProductCreateService(req.body);
     if (result.quantity == 0) {
       result.status = "out-of-stock";
     }
