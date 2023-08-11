@@ -9,4 +9,6 @@ router
 
 router.route("/:id").patch(allProductController.productUpdate);
 
+router.route("/buld-update").patch(allProductController);
+
 module.exports = router;
