@@ -18,6 +18,8 @@ exports.productUpdateServec = async (productID, data) => {
   );
   return updateProduct;
 };
+
+// bulk area start
 exports.bulkUpdateProductService = async (data) => {
   // ak dame sob gula update korte aikhane sodo oi sob product id gula dite hobe
 
@@ -33,6 +35,13 @@ exports.bulkUpdateProductService = async (data) => {
   const result = await Promise.all(allProduct);
   return result;
 };
+
+exports.bulkDeleteProductService = async (data) => {
+  const result = await Product.deleteMany({ _id: data.ids });
+  return result;
+};
+
+// bulk area end
 
 exports.productDeleteServecById = async (id) => {
   const result = await Product.deleteOne({ _id: id });

@@ -5,6 +5,7 @@ const {
   productUpdateServec,
   bulkUpdateProductService,
   productDeleteServecById,
+  bulkDeleteProductService,
 } = require("../services/product.services");
 
 exports.getProducts = async (req, res, next) => {
@@ -66,6 +67,8 @@ exports.productUpdate = async (req, res, next) => {
     });
   }
 };
+
+// Bulk area start
 exports.bulkUpdateProduct = async (req, res, next) => {
   try {
     const updateProduct = await bulkUpdateProductService(req.body);
@@ -82,6 +85,24 @@ exports.bulkUpdateProduct = async (req, res, next) => {
     });
   }
 };
+exports.bulkDeleteProduct = async (req, res, next) => {
+  try {
+    const ids = req.body;
+    // console.log(ids);
+    const result = await bulkDeleteProductService(ids);
+    res.status(200).json({
+      state: "Delete Success",
+      message: "Delete all data Successfully!!!",
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "Delete Fail",
+      message: "Can't not delete all data given",
+      error: error.message,
+    });
+  }
+};
+// bulk area end
 
 exports.productDeleteById = async (req, res, next) => {
   try {

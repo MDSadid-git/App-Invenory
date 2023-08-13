@@ -3,6 +3,7 @@ const allProductController = require("../controllers/product.controllers");
 const router = express.Router();
 
 router.route("/bulk-update").patch(allProductController.bulkUpdateProduct);
+router.route("/bulk-delete").delete(allProductController.bulkDeleteProduct);
 
 router
   .route("/")
