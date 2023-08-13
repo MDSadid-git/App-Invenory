@@ -91,7 +91,7 @@ exports.bulkDeleteProduct = async (req, res, next) => {
     // console.log(ids);
     const result = await bulkDeleteProductService(ids);
     res.status(200).json({
-      state: "Delete Success",
+      status: "Delete Success",
       message: "Delete all data Successfully!!!",
     });
   } catch (error) {
@@ -108,6 +108,12 @@ exports.productDeleteById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await productDeleteServecById(id);
+    if (!result.deletedCount) {
+      return res.status(400).json({
+        status: "Fail",
+        error: "Couldn't delete the Product",
+      });
+    }
     res.status(200).json({
       status: "Success",
       message: `Product delete Successfully!!!`,
