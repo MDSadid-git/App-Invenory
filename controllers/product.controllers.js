@@ -104,6 +104,8 @@ exports.bulkDeleteProduct = async (req, res, next) => {
 };
 // bulk area end
 
+// productDeleteServecById area start
+
 exports.productDeleteById = async (req, res, next) => {
   try {
     const { id } = req.params;
