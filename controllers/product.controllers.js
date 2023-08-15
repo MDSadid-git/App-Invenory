@@ -8,6 +8,7 @@ const {
   bulkDeleteProductService,
 } = require("../services/product.services");
 
+// Get Product area start
 exports.getProducts = async (req, res, next) => {
   try {
     const allProduct = await getProductsService();
@@ -23,6 +24,9 @@ exports.getProducts = async (req, res, next) => {
     });
   }
 };
+// Get Product area end
+
+// Get Create Product area start
 
 exports.createProducts = async (req, res, next) => {
   try {
@@ -48,6 +52,7 @@ exports.createProducts = async (req, res, next) => {
     });
   }
 };
+// Get Create Product area end
 
 exports.productUpdate = async (req, res, next) => {
   try {
