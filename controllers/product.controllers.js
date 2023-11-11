@@ -19,6 +19,12 @@ exports.getProducts = async (req, res, next) => {
 
     excludeFields.forEach((field) => delete queryObjectArea[field]);
 
+    const querySort = {};
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(",").join(" ");
+      console.log(sortBy);
+    }
+
     const allProduct = await getProductsService(queryObjectArea);
     res.status(200).json({
       status: "Success",
