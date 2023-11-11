@@ -14,6 +14,7 @@ exports.getProducts = async (req, res, next) => {
     const queryObjectArea = req.query;
 
     //sort, page, limit => Exclude
+    const excludeFields = ["sort", "page", "limit"];
 
     const allProduct = await getProductsService();
     res.status(200).json({
