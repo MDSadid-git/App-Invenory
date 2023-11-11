@@ -20,10 +20,17 @@ exports.getProducts = async (req, res, next) => {
     excludeFields.forEach((field) => delete queryObjectArea[field]);
 
     const querySort = {};
+    //product sort
     if (req.query.sort) {
       const sortBy = req.query.sort.split(",").join(" ");
       querySort.sortBy = sortBy;
       console.log(sortBy);
+    }
+
+    //product fields
+    if (req.query.fields) {
+      const fields = req.query.fields.split(",").join(" ");
+      querySort.fields = fields;
     }
 
     const allProduct = await getProductsService(queryObjectArea, querySort);
