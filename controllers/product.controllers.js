@@ -18,7 +18,7 @@ exports.getProducts = async (req, res, next) => {
 
     excludeFields.forEach((field) => delete queryObjectArea[field]);
 
-    const allProduct = await getProductsService();
+    const allProduct = await getProductsService(queryObjectArea);
     res.status(200).json({
       status: "Success",
       data: allProduct,
