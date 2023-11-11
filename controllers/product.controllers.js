@@ -12,7 +12,7 @@ const {
 exports.getProducts = async (req, res, next) => {
   try {
     const queryObjectArea = { ...req.query };
-    console.log(queryObjectArea);
+    // console.log(queryObjectArea);
 
     //sort, page, limit => Exclude
     const excludeFields = ["sort", "page", "limit"];
