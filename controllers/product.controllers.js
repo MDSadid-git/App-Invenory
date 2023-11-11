@@ -11,6 +11,8 @@ const {
 // Get Product area start
 exports.getProducts = async (req, res, next) => {
   try {
+    const queryArea = req.query;
+    console.log(queryArea);
     const allProduct = await getProductsService();
     res.status(200).json({
       status: "Success",
