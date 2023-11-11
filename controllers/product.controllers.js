@@ -11,10 +11,12 @@ const {
 // Get Product area start
 exports.getProducts = async (req, res, next) => {
   try {
-    const queryObjectArea = req.query;
+    const queryObjectArea = { ...req.query };
 
     //sort, page, limit => Exclude
     const excludeFields = ["sort", "page", "limit"];
+
+    excludeFields.forEach((field) => delete queryObjectArea[field]);
 
     const allProduct = await getProductsService();
     res.status(200).json({
