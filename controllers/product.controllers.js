@@ -11,13 +11,21 @@ const {
 // Get Product area start
 exports.getProducts = async (req, res, next) => {
   try {
-    const queryObjectArea = { ...req.query };
+    let queryObjectArea = { ...req.query };
     // console.log(queryObjectArea);
 
     //sort, page, limit => Exclude
     const excludeFields = ["sort", "page", "limit"];
 
     excludeFields.forEach((field) => delete queryObjectArea[field]);
+
+    // gt, lt, gte, lte
+    let fintersString = JSON.stringify(queryObjectArea);
+    fintersString = fintersString.replace(
+      /\b(gt|gte|lt|lte)\b/g,
+      (match) => `$${match}`
+    );
+    queryObjectArea = JSON.parse(fintersString);
 
     const querySort = {};
     //product sort

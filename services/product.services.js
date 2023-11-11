@@ -1,7 +1,8 @@
 const Product = require("../models/Product");
 
 exports.getProductsService = async (queryObjectArea, querySort) => {
-  const products = await Product.find({})
+  console.log(queryObjectArea);
+  const products = await Product.find(queryObjectArea)
     .select(querySort.fields)
     .sort(querySort.sortBy);
   return products;
