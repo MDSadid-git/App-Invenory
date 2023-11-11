@@ -22,10 +22,11 @@ exports.getProducts = async (req, res, next) => {
     const querySort = {};
     if (req.query.sort) {
       const sortBy = req.query.sort.split(",").join(" ");
+      querySort.sortBy = sortBy;
       console.log(sortBy);
     }
 
-    const allProduct = await getProductsService(queryObjectArea);
+    const allProduct = await getProductsService(queryObjectArea, querySort);
     res.status(200).json({
       status: "Success",
       data: allProduct,
