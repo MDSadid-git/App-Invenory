@@ -8,7 +8,8 @@ exports.getProductsService = async (queryObjectArea, querySort) => {
     .select(querySort.fields)
     .sort(querySort.sortBy);
   const allProductList = await Product.countDocuments(queryObjectArea);
-  return { allProductList, products };
+  const pageCount = Math.ceil(allProductList / querySort.limit);
+  return { allProductList, pageCount, products };
 };
 
 exports.getProductCreateService = async (data) => {
