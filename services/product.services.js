@@ -3,9 +3,12 @@ const Product = require("../models/Product");
 exports.getProductsService = async (queryObjectArea, querySort) => {
   console.log(queryObjectArea);
   const products = await Product.find(queryObjectArea)
+    .skip(querySort.skip)
+    .limit(querySort.limit)
     .select(querySort.fields)
     .sort(querySort.sortBy);
-  return products;
+  const allProductList = await Product.countDocuments(queryObjectArea);
+  return { allProductList, products };
 };
 
 exports.getProductCreateService = async (data) => {
