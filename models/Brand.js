@@ -8,4 +8,5 @@ const brandSchema = mongoose.Schema({
     maxLenght: 100,
     unique: true,
   },
+  description: String,
 });
