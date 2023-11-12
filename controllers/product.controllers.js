@@ -41,6 +41,11 @@ exports.getProducts = async (req, res, next) => {
       querySort.fields = fields;
     }
 
+    // page and skip area start
+    if (req.query.page) {
+      const { page = 0, limit = 10 } = req.query;
+    }
+
     const allProduct = await getProductsService(queryObjectArea, querySort);
     res.status(200).json({
       status: "Success",
