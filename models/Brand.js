@@ -30,7 +30,15 @@ const brandSchema = mongoose.Schema({
     {
       name: String,
       contanctNumber: String,
-      id: ObjectId,
+      id: {
+        type: ObjectId,
+        ref: "Supplier",
+      },
     },
   ],
+  status: {
+    type: String,
+    enum: ["active", "in-active"],
+    default: "active",
+  },
 });
