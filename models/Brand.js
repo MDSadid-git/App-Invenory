@@ -26,4 +26,11 @@ const brandSchema = mongoose.Schema({
       ref: "Product",
     },
   ],
+  suppliers: [
+    {
+      name: String,
+      contanctNumber: String,
+      id: ObjectId,
+    },
+  ],
 });
