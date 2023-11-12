@@ -44,6 +44,9 @@ exports.getProducts = async (req, res, next) => {
     // page and skip area start
     if (req.query.page) {
       const { page = 0, limit = 10 } = req.query;
+      const skip = (page - 1) * parseInt(limit);
+      queryObjectArea.skip = skip;
+      queryObjectArea.limit = limit;
     }
 
     const allProduct = await getProductsService(queryObjectArea, querySort);
