@@ -9,11 +9,13 @@ const brandSchema = mongoose.Schema({
     require: [true, "Please provide a Brand name"],
     maxLenght: 100,
     unique: true,
+    lowercase: true,
   },
   description: String,
   email: {
     type: String,
     validate: [validator.isEmail, "Please Provide a valid email"],
+    lowercase: true,
   },
   website: {
     type: String,
@@ -41,4 +43,9 @@ const brandSchema = mongoose.Schema({
     enum: ["active", "in-active"],
     default: "active",
   },
+
+  timestamps: true,
 });
+
+const Brand = mongoose.model("Brand", brandSchema);
+exports = Brand;
