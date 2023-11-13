@@ -10,17 +10,40 @@ const storeSchema = mongoose.Schema({
     maxLenght: 100,
     unique: true,
     lowercase: true,
+    enum: {
+      values: [
+        "Dhaka",
+        "Chattogram",
+        "Rajshahi",
+        "Sylhet",
+        "Khulna",
+        "Barishal",
+      ],
+    },
   },
   description: String,
-  email: {
+  status: {
     type: String,
-    validate: [validator.isEmail, "Please Provide a valid email"],
-    lowercase: true,
+    enum: ["active", "inactive"],
+    default: "active",
   },
-  website: {
-    type: String,
-    validate: [validator.isURL, "Please Provide a valid url"],
+  manager: {
+    name: String,
+    contactNumber: String,
+    id: {
+      type: ObjectId,
+      ref: "User",
+    },
   },
+  //   email: {
+  //     type: String,
+  //     validate: [validator.isEmail, "Please Provide a valid email"],
+  //     lowercase: true,
+  //   },
+  //   website: {
+  //     type: String,
+  //     validate: [validator.isURL, "Please Provide a valid url"],
+  //   },
   location: String,
   products: [
     {
