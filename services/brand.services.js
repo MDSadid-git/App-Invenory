@@ -23,3 +23,14 @@ exports.getBrandIdService = async (data) => {
   return result;
 };
 // brand one id end
+
+//brand one id update start
+exports.updateBrandIdService = async (id, data) => {
+  console.log(data);
+  const result = await Brand.updateOne({ _id: id }, data, {
+    runValidators: true,
+  });
+
+  return result;
+};
+// brand one id end end

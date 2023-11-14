@@ -2,6 +2,7 @@ const {
   createBrandService,
   getAllBrand,
   getBrandIdService,
+  updateBrandIdService,
 } = require("../services/brand.services");
 
 // create brand start
@@ -69,3 +70,31 @@ exports.getBrandById = async (req, res, next) => {
   }
 };
 // find one data from brand id end
+
+// one brand update area start
+exports.updateBrandById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const result = await updateBrandIdService(id, req.body);
+
+    if (!result.modifiedCount) {
+      return res.status(400).json({
+        status: "fail",
+        error: "couldn't Update the brand with this id",
+      });
+    }
+    res.status(200).json({
+      status: "All Brands",
+      message: "Brand update successfully!!!",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      error: "Couldn't find any data",
+      message: error.message,
+    });
+  }
+};
+// one brand update area end
