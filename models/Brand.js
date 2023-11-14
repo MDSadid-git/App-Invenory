@@ -1,8 +1,8 @@
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 const validator = require("validator");
 const { ObjectId } = mongoose.Schema.Types;
 
-const brandSchema = mongoose.Schema(
+const brandSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -51,4 +51,4 @@ const brandSchema = mongoose.Schema(
 );
 
 const Brand = mongoose.model("Brand", brandSchema);
-exports = Brand;
+module.exports = Brand;
