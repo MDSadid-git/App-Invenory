@@ -65,7 +65,7 @@ const productSchema = new mongoose.Schema(
       id: {
         type: ObjectId,
         ref: "Brand",
-        required: true,
+        // required: true,
       },
     },
     // quantity: {
