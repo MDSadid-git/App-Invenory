@@ -171,3 +171,7 @@ exports.productDeleteById = async (req, res, next) => {
     });
   }
 };
+// productDeleteServecById area end
+
+// photo multer area start
+// photo multer area end

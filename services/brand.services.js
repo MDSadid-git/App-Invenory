@@ -2,7 +2,7 @@ const Brand = require("../models/Brand");
 
 //all barand area start
 exports.getAllBrand = async () => {
-  const result = await Brand.find({}).select("-products -suppliers");
+  const result = await Brand.find({}).populate("products");
   return result;
 };
 //all brand area end
