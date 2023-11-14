@@ -174,4 +174,15 @@ exports.productDeleteById = async (req, res, next) => {
 // productDeleteServecById area end
 
 // photo multer area start
+exports.fileUploade = async (req, res) => {
+  try {
+    res.status(200).json(req.file);
+  } catch (error) {
+    res.status(400).json({
+      status: "Image can't uploade",
+      message: "Plases give right image",
+      error: error.message,
+    });
+  }
+};
 // photo multer area end
