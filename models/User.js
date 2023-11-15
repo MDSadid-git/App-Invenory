@@ -5,7 +5,8 @@ const bcrypt = require("bcrypt");
 const userSchema = mongoose.Schema(
   {
     email: {
-      validate: [validator.isEmail, "Provide a valid Email"],
+      type: String,
+      //   validate: [validator.isEmail, "Provide a valid Email"],
       trim: true,
       lowercase: true,
       unique: true,
@@ -76,7 +77,10 @@ const userSchema = mongoose.Schema(
 
 userSchema.pre("save", function (next) {
   const password = this.password;
-  const hashedPassword = bcrypt.hashSync(password);
+
+  // Generate a salt with 10 rounds of hashing
+  const saltRounds = 10;
+  const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
   this.password = hashedPassword;
   this.confirmPassword = undefined;
