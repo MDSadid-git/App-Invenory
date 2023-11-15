@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcrypt");
 
-const usesrSchema = mongoose.Schema(
+const userSchema = mongoose.Schema(
   {
     email: {
       validate: [validator.isEmail, "Provide a valid Email"],
@@ -30,8 +31,8 @@ const usesrSchema = mongoose.Schema(
       type: String,
       required: [true, "Confirm Password is required"],
       validate: {
-        validator: (value) => {
-          return value === password;
+        validator: function (value) {
+          return value === this.password;
         },
       },
       message: "password don't match!",
@@ -73,5 +74,14 @@ const usesrSchema = mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", usesrSchema);
+userSchema.pre("save", function (next) {
+  const password = this.password;
+  const hashedPassword = bcrypt.hashSync(password);
+
+  this.password = hashedPassword;
+  this.confirmPassword = undefined;
+  next();
+});
+
+const User = mongoose.model("User", userSchema);
 module.exports = User;
