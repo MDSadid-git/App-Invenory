@@ -98,3 +98,21 @@ exports.userlogin = async (req, res, next) => {
   }
 };
 // user login area end
+
+// getme login area start
+exports.loginMe = async (req, res, next) => {
+  try {
+    const user = await findUserByEmail(req.user?.email);
+    res.status(200).json({
+      status: "Success",
+      data: user,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: "fail",
+      error: "Couldn't find the User",
+      message: error.message,
+    });
+  }
+};
+// getme login area end
