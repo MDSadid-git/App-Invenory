@@ -79,11 +79,12 @@ exports.userlogin = async (req, res, next) => {
 
     // generate   token area start
     const token = generateToken(user);
+    const { password: pwd, ...others } = user.toObject();
     res.status(200).json({
       status: "Success",
       message: "Success to login!!!",
       data: {
-        user,
+        user: others,
         token,
       },
     });
